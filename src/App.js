@@ -27,11 +27,6 @@ function App() {
     }
   ]
 
-  const loe = () => {
-    loeAndmed ({lat: 58.3917, long: 24.4953})
-    loeAndmed ({lat: 59.4370, long: 24.7536})
-  }
-
   const [aktiivne, setAktiivne] = useState(0) 
 
     const muudaAktiivset =  async (index) => {
