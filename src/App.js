@@ -29,10 +29,13 @@ function App() {
 
   const [aktiivne, setAktiivne] = useState(0) 
 
-    const muudaAktiivset =  async (index) => {
+  const [ilmPraegu, setIlmPraegu] = useState(undefined)
+
+  const muudaAktiivset =  async (index) => {
     const koht = asukohad[index];
     setAktiivne(index)
     const andmed = await loeAndmed({lat: koht.lat, long: koht.long})
+    setIlmPraegu(andmed)
     console.log(andmed)
   }
 
@@ -44,7 +47,7 @@ function App() {
         <Asukohad asukohad={asukohad} muudaAktiivset={muudaAktiivset}/>
         </div>
         <div className="col-8">
-          <Detailid koht={asukohad[aktiivne]}/>
+          <Detailid koht={asukohad[aktiivne]} ilmPraegu={ilmPraegu}/>
         </div>
         
       </div>
