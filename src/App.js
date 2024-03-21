@@ -1,23 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import { loeAndmed } from './utils'
+import Asukohad from './Asukohad'
+import { useState } from 'react'
+import Detailid from './Detailid'
 
 function App() {
+
+  const asukohad = [
+    {
+      nimetus: 'Pärnu',
+      lat: 58.3917,
+      long: 24.4953,
+      andmed: null
+    },
+    {
+      nimetus: 'Tallinn',
+      lat: 59.4370,
+      long: 24.7536,
+      andmed: null
+    },
+    {
+      nimetus: 'Tartu',
+      lat: 58.378,
+      long: 26.729,
+      andmed: null
+    }
+  ]
+
+  const loe = () => {
+    loeAndmed ({lat: 58.3917, long: 24.4953})
+    loeAndmed ({lat: 59.4370, long: 24.7536})
+  }
+
+  const [aktiivne, setAktiivne] = useState(0) 
+
+    const muudaAktiivset =  async (index) => {
+    const koht = asukohad[index];
+    setAktiivne(index)
+    const andmed = await loeAndmed({lat: koht.lat, long: koht.long})
+    console.log(andmed)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Ilm</h1>
+      <div className="row">
+        <div className="col-4">
+        <Asukohad asukohad={asukohad} muudaAktiivset={muudaAktiivset}/>
+        </div>
+        <div className="col-8">
+          <Detailid koht={asukohad[aktiivne]}/>
+        </div>
+        
+      </div>
+
     </div>
   );
 }
