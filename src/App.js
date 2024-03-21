@@ -40,8 +40,7 @@ function App() {
   }
 
   useEffect (() => {
-    console.log('renderdus')
-    muudaAktiivset(1)
+      muudaAktiivset(0)
   }, [])
 
   return (
