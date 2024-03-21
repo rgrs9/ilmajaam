@@ -1,7 +1,7 @@
 import './App.css';
 import { loeAndmed } from './utils'
 import Asukohad from './Asukohad'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Detailid from './Detailid'
 
 function App() {
@@ -38,6 +38,11 @@ function App() {
     setIlmPraegu(andmed)
     console.log(andmed)
   }
+
+  useEffect (() => {
+    console.log('renderdus')
+    muudaAktiivset(1)
+  }, [])
 
   return (
     <div className="container">
